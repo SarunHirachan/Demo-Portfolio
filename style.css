@@ -1,0 +1,796 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: DM Sans;
+}
+
+html,
+body {
+  height: auto;
+  width: 100%;
+  background-color: black;
+  color: white;
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+::selection {
+  background: #6b705c;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* intro section */
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #0d0d0d;
+  z-index: 501;
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 90vh;
+}
+
+.intro.intro-sliding-up {
+  top: -100vh;
+  transition: top 2s; /* Add the transition property only for sliding up */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+/* scroll animation */
+.fade-from-bottom {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-from-bottom.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* navbar section*/
+
+#navbar {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 201;
+  background-color: black;
+  /* background-color: #0d0d0d; */
+}
+
+#progressbar {
+  --progress: 0;
+  height: 4px;
+  width: var(--progress);
+  /* background-color: #0077b6 ; */
+  background-color: #0077b6;
+  margin-top: 86px;
+  position: fixed;
+  z-index: 305;
+}
+
+#about,
+#work,
+#contact {
+  position: relative;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+#about::after,
+#work::after,
+#contact::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #0077b6;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#about:hover,
+#work:hover,
+#contact:hover {
+  transform: translateY(-10px);
+}
+
+#about:hover::after,
+#work:hover::after,
+#contact:hover::after {
+  opacity: 1;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.logo img {
+  height: 60px;
+  width: 60px;
+  border-radius: 10%;
+}
+
+.menu ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+}
+
+.menu li {
+  margin-left: 10px;
+}
+
+/* profile section */
+#profile {
+  position: relative;
+  height: 110vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 150px;
+  padding-right: 100px;
+}
+
+#photo {
+  height: 100vh;
+  border: none;
+  border-radius: 20%;
+  margin-top: 150px;
+}
+
+#msg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 500px;
+  width: 400px;
+  text-align: center;
+  padding: 15px;
+  color: white;
+  margin-top: 50px;
+}
+
+#name {
+  font-size: 18px;
+  letter-spacing: 6px;
+}
+
+#msg,
+#mottoMsg {
+  font-weight: bold;
+  font-size: 80px;
+  line-height: 75px;
+  margin-top: 15px;
+}
+
+/* wave */
+
+.waveFirst,
+.waveSecond,
+.waveThird,
+.waveForth,
+.waveFifth,
+.waveSixth,
+.waveSeven,
+.waveEight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.waveFirst svg,
+.waveSecond svg,
+.waveThird svg,
+.waveForth svg,
+.waveFifth svg,
+.waveSixth svg,
+.waveSeven svg,
+.waveEight svg {
+  position: relative;
+  display: block;
+  width: calc(134% + 1.3px);
+  height: 123px;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 1));
+  transition: 1s all ease-in-out;
+}
+
+.waveFirst .shape-fill,
+#profile {
+  fill: rgb(10, 10, 10);
+  background-color: rgb(0, 0, 0);
+}
+.waveSecond .shape-fill,
+#aboutMe {
+  fill: rgb(20, 20, 20);
+  background-color: rgb(10, 10, 10);
+}
+.waveThird .shape-fill,
+#whatIdo {
+  fill: rgb(30, 30, 30);
+  background-color: rgb(20, 20, 20);
+}
+.waveForth .shape-fill,
+#tech {
+  fill: rgb(40, 40, 40);
+  background-color: rgb(30, 30, 30);
+}
+.waveFifth .shape-fill,
+#experience {
+  fill: rgb(50, 50, 50);
+  background-color: rgb(40, 40, 40);
+}
+.waveSixth .shape-fill,
+#client {
+  fill: rgb(60, 60, 60);
+  background-color: rgb(50, 50, 50);
+}
+.waveSeven .shape-fill,
+#project {
+  fill: rgb(70, 70, 70);
+  background-color: rgb(60, 60, 60);
+}
+.waveEight .shape-fill,
+#feedback {
+  fill: rgb(80, 80, 80);
+  background-color: rgb(70, 70, 70);
+}
+
+/* main section */
+
+#aboutMe,
+#experience,
+#whatIdo,
+#client,
+#feedback,
+#motto {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  position: relative;
+}
+
+#aboutMe {
+  height: 600px;
+}
+
+#whatIdo {
+  height: 700px;
+}
+
+#experience {
+  height: 550px;
+}
+
+#client {
+  height: 550px;
+}
+
+#description {
+  height: 70%;
+  width: 70%;
+}
+
+#aboutTitle,
+#expTitle,
+#whatTitle,
+#clientTitle,
+#mottoTitle {
+  font-size: 18px;
+  letter-spacing: 6px;
+  margin-bottom: 25px;
+}
+
+#aboutMsg,
+#expMsg,
+#whatMsg,
+#clientMsg {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 75px;
+}
+
+#whatMsg {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px white solid;
+  border-bottom: 1px white solid;
+}
+
+#whatMsg:hover {
+  background-color: #0077b6;
+  transition: 0.8s all ease-in-out;
+}
+
+/* tech */
+
+#tech {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: 850px;
+}
+
+#techTitle,
+#projectTitle,
+#feedbackTitle {
+  font-size: 18px;
+  letter-spacing: 6px;
+  padding-left: 210px;
+}
+
+#skill {
+  margin: 0 auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 600px;
+  width: 70%;
+}
+
+.circular-progress {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px; /* Adjust the margin as needed */
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.progress-value {
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0077b6;
+}
+
+.text {
+  font-size: 30px;
+  font-weight: 500;
+  color: #606060;
+}
+
+#item {
+  width: 200px;
+  height: 200px;
+  margin: 80px 40px;
+  padding: 20px;
+  transition: 0.2s all ease-in-out;
+}
+
+#item:hover {
+  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.5), -3px -3px 30px rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+  transition: 0.5s all ease-in-out;
+}
+
+#skillName {
+  text-align: center;
+  font-size: 18px;
+}
+
+#language {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-top: 30px;
+}
+
+#languageLogo {
+  width: 40px;
+  height: 30px;
+  padding-left: 10px;
+}
+
+/* Projects */
+
+#project {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#project {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: 110vh;
+}
+
+#sampleProject {
+  margin: 0 auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 70%;
+  width: 100%;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#sampleProject img {
+  display: none;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.arrow.left {
+  left: 120px;
+  font-size: 35px;
+}
+
+.arrow.right {
+  right: 120px;
+  font-size: 35px;
+}
+
+/* feedback */
+#feedback {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  height: 1100px;
+}
+
+#customer {
+  margin: 0 auto 0 auto;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
+#customer1 {
+  width: 70%;
+  height: 80%;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#customerText {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 55px;
+  text-align: left;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 80px;
+  padding-bottom: 60px;
+  border-top: 1px rgb(255, 255, 255) solid;
+}
+
+#customerName,
+#customerId {
+  font-size: 18px;
+  text-align: left;
+  line-height: normal;
+  font-weight: normal;
+}
+
+#customerName {
+  padding-top: 30px;
+  font-weight: bold;
+}
+
+/* contactME section */
+#contactMe {
+  background-color: rgb(80, 80, 80);
+  height: 900px;
+}
+
+/* motto section */
+#motto,
+#contactForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 35%;
+}
+
+#mottoTitle {
+  margin-top: 100px;
+}
+
+#mottoMsg {
+  width: 600px;
+  height: auto;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#mottoName {
+  font-size: 15px;
+}
+
+/* contactForm Section */
+#contactForm {
+  margin-top: 150px;
+}
+
+form {
+  height: 400px;
+  width: 500px;
+  border: 2px black solid;
+  box-shadow: 5px 5px;
+  color: black;
+  background-color: white;
+  padding: auto;
+  margin: auto;
+  font-size: 15px;
+}
+
+#contactTitle {
+  font-size: 18px;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#formFill {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  height: 80%;
+}
+
+#userdata,
+#myinfo {
+  height: 80%;
+  width: 50%;
+}
+
+#userdata {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: relative;
+}
+
+#userdata input {
+  height: 40px;
+  border: none;
+  border-bottom: 2px black solid;
+  font-size: 16px;
+  color: black;
+  outline: none;
+  transition: 0.2s ease-in-out;
+}
+
+#userdata input:focus {
+  padding-left: 15px;
+  transition: 0.2s ease-in-out;
+  border: 2px black solid;
+}
+
+#userdata input:hover {
+  border: 2px black solid;
+  transition: 0.2s ease-in-out;
+}
+
+#userdata ::placeholder {
+  color: black;
+}
+
+#myinfo {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+#info {
+  margin-top: 26%;
+  padding-left: 30px;
+  border-bottom: 2px black solid;
+  padding-bottom: 10px;
+  margin-left: 15px;
+}
+
+#address {
+  margin-bottom: 20%;
+  padding-left: 30px;
+  padding-top: 10px;
+  margin-left: 15px;
+}
+
+#formBottom {
+  width: auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 80px;
+}
+
+#sendButton {
+  border-radius: 50px;
+  border: 0;
+  color: rgb(0, 0, 0);
+  border: 2px black solid;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+}
+
+#sendButton:hover {
+  letter-spacing: 3px;
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(0, 0, 0) 0px 7px 29px 0px;
+}
+
+#sendButton:active {
+  letter-spacing: 3px;
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(0, 0, 0) 0px 7px 29px 0px;
+  transform: translateY(-10px);
+  transition: 100ms;
+}
+
+#thankYouMsg {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* social section */
+#social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sociallink {
+  display: flex;
+}
+
+.Btn {
+  margin-left: 10px;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  position: relative;
+  background-color: rgb(31, 31, 31);
+  overflow: hidden;
+}
+
+.svgIcon {
+  transition-duration: 0.3s;
+}
+
+.text {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  width: 120px;
+  font-weight: bold;
+  font-size: 15px;
+  opacity: 0;
+  transition-duration: 0.4s;
+}
+
+.Btn:hover {
+  width: 110px;
+  transition-duration: 0.4s;
+  border-radius: 30px;
+}
+
+.Btn:hover .text {
+  opacity: 1;
+  transition-duration: 0.4s;
+}
+
+.Btn:hover .svgIcon {
+  opacity: 0;
+  transition-duration: 0.3s;
+}
